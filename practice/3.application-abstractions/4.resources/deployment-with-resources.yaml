@@ -15,15 +15,15 @@ spec:
         app: my-app
     spec:
       containers:
-      - image: quay.io/testing-farm/nginx:1.12
+      - image: nginx:stable-alpine-perl
         name: nginx
         ports:
         - containerPort: 80
         resources:
           requests:
-            cpu: 10m
+            cpu: 10
             memory: 100Mi
           limits:
-            cpu: 100m
+            cpu: 10
             memory: 100Mi
 ...
