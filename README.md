@@ -25,15 +25,19 @@ deploy = deployments
 deployment = deployments
 deployments = deployments
 можно добавить в deployments через точку апиверсион пример deployments.apps
+cm = configmap
 
 k completion -h - инструкция как добавить комплишин
 
 k get node - получить список нод
 k get pod - получить список подов
+k get pod -o wide - возвращает расширенную информацию
 k get po -A - получить список подов по всем неймспейсам
 k get replicaset - получить реплики сет
 k get po -l app=my-app - выведет поды с таким labels
 k get deployments - получить список деплойментов
+k get secret - получить список секретов
+k get secret my-secret -o yaml - получить манифест секрета
 
 k create -f pod.yaml - создать под из файла, применяется только 1 раз
 k apply -f pod.yaml - создает под, если под уже существует применяет изменения в файле
@@ -63,3 +67,16 @@ k rollout undo deploy my-deployment - роллбэк деплоимента(ре
 
 Меняем количество ресурсов для нашего деплоймента
  - kubectl patch deployment my-deployment --patch '{"spec":{"template":{"spec":{"containers":[{"name":"nginx","resources":{"requests":{"cpu":"10"},"limits":{"cpu":"10"}}}]}}}}'
+
+k get cm - получение списка конфиг мап
+
+k get cm my-configmap-env -o yaml - возвращает манифест
+
+k exec -it my-deployment-79455466bc-m7584 -- bash - запустить шелл внутри пода
+k exec -it my-deployment-79455466bc-m7584 -- env - возвращает энвы внутри пода
+
+k create secret generic test --from-literal=test1=asdf --from-literal=dbpassword=1q2w3e - создает секрет
+
+echo MXEydzNl | base64 -d --- декод base64
+
+kubectl port-forward my-deployment-5b47d48b58-l4t67 8080:80 & - это запуск команд в фоновом режиме, потом вводим следующую команду. перепроксируем порт
