@@ -29,6 +29,7 @@ cm = configmap
 
 k completion -h - инструкция как добавить комплишин
 
+k get all - 
 k get node - получить список нод
 k get pod - получить список подов
 k get pod -o wide - возвращает расширенную информацию
